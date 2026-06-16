@@ -1,0 +1,8 @@
+{
+  "name": "Lum multy V2",
+  "description": "Votre écran, votre envie, votre message.\nUn fond d’écran intelligent et personnalisable qui parle pour vous. Que ce soit pour afficher votre genre, votre humeur ou vos envies du moment, Lum s’adapte à tous vos appareils et capte l’attention de ceux qui comptent.\n✨ Téléchargez Lum et laissez votre écran dire ce que les mots ne peuvent pas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
