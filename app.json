@@ -4,6 +4,15 @@
       "eas": {
         "projectId": "cabf7d64-0add-4720-9a66-f4057618958e"
       }
+    },
+    "android": {
+      "package": "com.lyralum.reactexample"
+    },
+    "ios": {
+      "bundleIdentifier": "com.lyralum.reactexample",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     }
   }
 }
