@@ -11,6 +11,8 @@ workflows:
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
       node: latest
+    integrations:
+      app_store_connect: Lum
     scripts:
       - name: Install npm dependencies
         script: npm install
