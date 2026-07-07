@@ -8,7 +8,7 @@ workflows:
         provisioning_profiles:
           - lum_app_store_profile_final
         certificates:
-          - lum dist v2
+          - Lum Dist v2
       vars:
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
