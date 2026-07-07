@@ -13,9 +13,9 @@ ios_signing:
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
       node: latest
-    integrations:
+      integrations:
       app_store_connect: Lum
-    scripts:
+      scripts:
       - name: Install npm dependencies
         script: npm install
       - name: Build web app
