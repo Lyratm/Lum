@@ -46,7 +46,7 @@ workflows:
       android_signing:
         - lum_keystore
       vars:
-        PACKAGE_NAME: "fr.v3rt.lum"
+        PACKAGE_NAME: "lum.app"
       node: latest
     scripts:
       - name: Install npm dependencies

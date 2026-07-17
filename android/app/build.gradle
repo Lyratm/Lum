@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "fr.v3rt.lum"
+    namespace = "lum.app"
     compileSdk = rootProject.ext.compileSdkVersion
 
     signingConfigs {
@@ -16,7 +16,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "fr.v3rt.lum"
+        applicationId "lum.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
