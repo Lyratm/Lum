@@ -91,6 +91,7 @@ export const STATUS_CATEGORIES: StatusCategory[] = [
       { id: 'voyage', emoji: '🥭', label: 'Voyage', description: 'Partir ensemble' },
       { id: 'sport', emoji: '🍏', label: 'Sport', description: 'Bouger !' },
       { id: 'gaming', emoji: '🫐', label: 'Gaming', description: 'Jouer ensemble' },
+      { id: 'lecture', emoji: '📚', label: 'Lecture', description: 'Partager nos lectures' },
     ]
   },
   {
