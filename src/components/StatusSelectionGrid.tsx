@@ -37,6 +37,8 @@ export const STATUS_CATEGORIES: StatusCategory[] = [
       { id: 'coup-dun-soir', emoji: '🍑', label: "Coup d'un soir", description: 'Juste ce soir' },
       { id: 'plan-regulier', emoji: '🍆', label: 'Plan régulier', description: 'On se revoit' },
       { id: 'voir-venir', emoji: '🍇', label: 'Voir venir', description: 'Prendre le temps' },
+      { id: 'soiree', emoji: '🥂', label: 'Soirée', description: 'Partager une soirée' },
+      { id: 'chill', emoji: '🍿', label: 'Chill', description: 'Un moment détendu' },
     ]
   },
   {
