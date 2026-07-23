@@ -23,6 +23,10 @@
 }
 
 /* Custom styles for AOD lockscreen feeling */
+:root {
+  font-size: 17.5px;
+}
+
 body {
   background-color: #0d0e12;
   color: #f3f4f6;

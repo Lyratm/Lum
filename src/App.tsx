@@ -79,7 +79,10 @@ export default function App() {
         const parsed = JSON.parse(saved) as Mood[];
         return parsed.map(m => {
           if (m.id === 'masculin') {
-            return { ...m, name: 'Masculin', phrase: 'Masculin', description: 'Couleur : Masculin' };
+            return { ...m, name: 'Hétéro', phrase: 'Hétéro', description: 'Couleur : Bleu' };
+          }
+          if (m.id === 'feminin') {
+            return { ...m, name: 'Hétéro', phrase: 'Rose', description: 'Couleur : Rose' };
           }
           if (m.id === 'queer-general' && m.name === 'Queer (général)') {
             return { ...m, name: 'Queer' };
@@ -388,7 +391,7 @@ export default function App() {
           {/* Main Navigation Header */}
           <header className="border-b border-white/5 bg-black/40 backdrop-blur-xl sticky top-0 z-20 transition-all relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between pt-[50px]">
                 <div className="flex items-center gap-3">
                   <div>
                     <div className="h-[34px] min-w-[120px] flex items-center justify-start">
@@ -631,17 +634,19 @@ export default function App() {
                       {t('lauchAodBtn')}
                     </button>
 
-                    <SocialSharePanel
-                      language={language}
-                      activeMoodId={activeMood.id}
-                      activeMoodName={MOOD_TRANSLATIONS[language]?.[activeMood.id]?.name || activeMood.name}
-                      isExporting={isExporting}
-                      isSharing={isSharing}
-                      onDownload={handleExportConfiguration}
-                      onShareNative={handleShare}
-                      t={t}
-                      showToast={showToast}
-                    />
+                    {/* Partage en direct button */}
+                    <button
+                      id="btn-live-share"
+                      onClick={handleShare}
+                      disabled={isSharing}
+                      className={`w-full flex items-center justify-center gap-2 bg-white/[0.03] hover:bg-white/[0.08] active:bg-white/[0.1] text-white font-medium py-3 rounded-xl border border-white/10 transition-all cursor-pointer text-sm font-display ${isSharing ? 'opacity-60 cursor-wait' : ''}`}
+                    >
+                      <Share2 className="w-4 h-4 text-[#9B23EA]" />
+                      <span>{language === 'fr' ? 'Partage en direct' : 'Live Share'}</span>
+                    </button>
+
+
+                    {/* SocialSharePanel has been removed at user request */}
                     <p className="text-[11px] text-white/40 text-center leading-relaxed font-light">
                       {t('previewFooter')}
                     </p>
@@ -664,7 +669,7 @@ export default function App() {
                   className="h-[27px] w-auto filter opacity-40 hover:opacity-100 transition-opacity"
                 />
               </div>
-
+              <p className="text-[11px] text-white/25 font-mono tracking-wider">V1.5</p>
             </div>
           </footer>
         </>

@@ -195,16 +195,6 @@ export const SocialSharePanel: React.FC<SocialSharePanelProps> = ({
                   </div>
                   <Share2 className="w-3.5 h-3.5 text-[#9B23EA]" />
                 </button>
-
-                {/* Download wallpaper file locally */}
-                <button
-                  onClick={onDownload}
-                  disabled={isExporting}
-                  className={`w-full flex items-center gap-2 bg-white/[0.02] border border-white/5 text-white/70 rounded-xl p-2.5 text-[11px] font-medium transition-all hover:bg-white/[0.05] hover:text-white cursor-pointer ${isExporting ? 'opacity-60 cursor-wait' : ''}`}
-                >
-                  <Download className="w-3.5 h-3.5 text-white/45" />
-                  <span>{labels.downloadSnapshot}</span>
-                </button>
               </div>
             </div>
           </motion.div>

@@ -31,7 +31,7 @@ export const MoodSelectorGrid: React.FC<MoodSelectorGridProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-semibold font-display tracking-tight text-slate-100 flex items-center gap-1.5">
-            <span className="text-xl">1.</span> {t('step1Title')}
+            {t('step1Title')}
           </h2>
           <p className="text-xs text-white bg-[#202020] px-3 py-1.5 rounded-xl inline-block border border-white/5" id="gender-selection-guide-text">
             {t('step1Sub')}

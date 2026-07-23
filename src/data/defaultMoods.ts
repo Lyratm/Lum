@@ -3,24 +3,24 @@ import { Mood } from '../types';
 export const defaultMoods: Mood[] = [
   {
     id: 'masculin',
-    name: 'Masculin',
+    name: 'Hétéro',
     iconName: 'User',
     colorClass: 'text-sky-400 border-sky-400/20 bg-sky-950/10',
     hexColor: '#38bdf8',
-    phrase: 'Masculin',
+    phrase: 'Hétéro',
     emoji: '♂️',
-    description: 'Couleur : Masculin',
+    description: 'Couleur : Bleu',
     suggestedBrightness: 0.7
   },
   {
     id: 'feminin',
-    name: 'Féminin',
+    name: 'Hétéro',
     iconName: 'User',
     colorClass: 'text-pink-400 border-pink-400/20 bg-pink-950/10',
     hexColor: '#f472b6',
-    phrase: 'Rose clair',
+    phrase: 'Rose',
     emoji: '♀️',
-    description: 'Couleur : Rose clair',
+    description: 'Couleur : Rose',
     suggestedBrightness: 0.7
   },
   {

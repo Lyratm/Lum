@@ -124,7 +124,7 @@ export const StatusSelectionGrid: React.FC<StatusSelectionGridProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/5 pb-4">
         <div>
           <h2 className="text-lg font-semibold font-display tracking-tight text-slate-100 flex items-center gap-1.5 align-middle">
-            <span className="text-xl">2.</span> {t('step2Title')}
+            {t('step2Title')}
           </h2>
           <p className="text-xs text-white/40 mt-1">
             {t('step2Sub')}
