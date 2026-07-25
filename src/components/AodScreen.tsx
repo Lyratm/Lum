@@ -120,15 +120,16 @@ export const AodScreen: React.FC<AodScreenProps> = ({
       if (starsRef.current.length === 0) {
         const baseCount = 35;
         const initialStars = [];
+        const isWhite = settings.bgColor === 'white';
         for (let i = 0; i < baseCount; i++) {
           const typeRand = Math.random();
           let color = activeMood.hexColor;
           if (typeRand < 0.35) {
-            color = '#ffffff'; // beautiful white star
+            color = isWhite ? '#1e293b' : '#ffffff';
           } else if (typeRand < 0.55) {
-            color = '#fde047'; // celestial yellow/gold
+            color = isWhite ? '#8b5cf6' : '#fde047';
           } else if (typeRand < 0.7) {
-            color = '#c084fc'; // purple aura
+            color = isWhite ? '#0284c7' : '#c084fc';
           }
           
           initialStars.push({
@@ -315,6 +316,8 @@ export const AodScreen: React.FC<AodScreenProps> = ({
     starsRef.current = [...starsRef.current, ...newInteractiveStars];
   };
 
+  const isWhiteBg = settings.bgColor === 'white';
+
   // Clock format strings
   const hours = time.getHours().toString().padStart(2, '0');
   const minutes = time.getMinutes().toString().padStart(2, '0');
@@ -326,21 +329,33 @@ export const AodScreen: React.FC<AodScreenProps> = ({
   const fullDateString = `${daysOfLayout[time.getDay()]} ${time.getDate()} ${monthsOfLayout[time.getMonth()]}`;
 
   // Dynamic visual parameters matching AOD glow levels visually (éteint, moyen, fort)
-  const clockTextClass = settings.glowIntensity === 'none'
-    ? 'text-slate-600 font-extralight'
-    : settings.glowIntensity === 'slow'
-    ? 'text-slate-200 font-light'
-    : 'text-white font-extralight';
+  const clockTextClass = isWhiteBg
+    ? (settings.glowIntensity === 'none'
+        ? 'text-slate-700 font-normal'
+        : settings.glowIntensity === 'slow'
+        ? 'text-slate-900 font-light'
+        : 'text-slate-950 font-extralight')
+    : (settings.glowIntensity === 'none'
+        ? 'text-slate-600 font-extralight'
+        : settings.glowIntensity === 'slow'
+        ? 'text-slate-200 font-light'
+        : 'text-white font-extralight');
 
   const clockTextGlowStyle = settings.glowIntensity === 'pulsing'
-    ? { textShadow: `0 0 14px ${activeMood.hexColor}60` }
+    ? { textShadow: `0 0 14px ${activeMood.hexColor}${isWhiteBg ? '33' : '60'}` }
     : {};
 
-  const dateTextClass = settings.glowIntensity === 'none'
-    ? 'text-slate-750 font-extralight opacity-40'
-    : settings.glowIntensity === 'slow'
-    ? 'text-slate-500 font-light'
-    : 'text-slate-200 font-medium tracking-[0.16em]';
+  const dateTextClass = isWhiteBg
+    ? (settings.glowIntensity === 'none'
+        ? 'text-slate-500 font-light opacity-80'
+        : settings.glowIntensity === 'slow'
+        ? 'text-slate-700 font-medium'
+        : 'text-slate-900 font-semibold tracking-[0.16em]')
+    : (settings.glowIntensity === 'none'
+        ? 'text-slate-750 font-extralight opacity-40'
+        : settings.glowIntensity === 'slow'
+        ? 'text-slate-500 font-light'
+        : 'text-slate-200 font-medium tracking-[0.16em]');
 
   // Exit trigger with safety click-count (if fullscreen, single click opens reminder, double click exits)
   const handleScreenClick = (e: React.MouseEvent) => {
@@ -379,21 +394,23 @@ export const AodScreen: React.FC<AodScreenProps> = ({
     <div
       id={isPreview ? 'aod-preview-viewport' : 'aod-fullscreen-viewport'}
       onClick={handleScreenClick}
-      className={`no-select relative bg-black font-mono select-none overflow-hidden flex flex-col transition-all duration-300 ${
+      className={`no-select relative font-mono select-none overflow-hidden flex flex-col transition-colors duration-300 ${
+        isWhiteBg ? 'bg-white text-slate-900' : 'bg-black text-white'
+      } ${
         isPreview 
           ? 'w-full h-full rounded-[36px] p-6 pb-7 justify-between items-center gap-4' 
           : 'fixed inset-0 z-50 p-[env(safe-area-inset-top)_env(safe-area-inset-right)_env(safe-area-inset-bottom)_env(safe-area-inset-left)] justify-center items-center gap-16 cursor-none'
       }`}
       style={{
-        backgroundColor: '#000000',
-        color: '#ffffff',
+        backgroundColor: isWhiteBg ? '#ffffff' : '#000000',
+        color: isWhiteBg ? '#0f172a' : '#ffffff',
         height: isPreview ? '100%' : '100dvh',
       }}
     >
       {/* Simulation Screen Brightness Overlay Filter */}
       {!isPreview && (
         <div 
-          className="absolute inset-0 pointer-events-none bg-black transition-opacity duration-300"
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${isWhiteBg ? 'bg-white' : 'bg-black'}`}
           style={{ opacity: 1 - settings.brightness }}
         />
       )}
@@ -591,19 +608,21 @@ export const AodScreen: React.FC<AodScreenProps> = ({
                 repeat: settings.glowIntensity !== 'none' ? Infinity : 0,
                 ease: "easeInOut"
               }}
-              className="relative rounded-full border bg-slate-950/40 flex items-center justify-center transition-all duration-1000"
+              className={`relative rounded-full border flex items-center justify-center transition-all duration-1000 ${
+                isWhiteBg ? 'bg-slate-100/90 shadow-lg' : 'bg-slate-950/40'
+              }`}
               style={{
                 padding: settings.showIcons ? '1.75rem' : '1.25rem',
                 borderColor: settings.glowIntensity === 'pulsing'
-                  ? `${activeMood.hexColor}60`
+                  ? `${activeMood.hexColor}80`
                   : settings.glowIntensity === 'slow'
-                  ? `${activeMood.hexColor}25`
-                  : 'rgba(255, 255, 255, 0.05)',
+                  ? `${activeMood.hexColor}40`
+                  : isWhiteBg ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.05)',
                 boxShadow: settings.glowIntensity === 'pulsing'
                   ? `0 0 45px ${activeMood.hexColor}55, inset 0 0 20px ${activeMood.hexColor}30`
                   : settings.glowIntensity === 'slow'
-                  ? `0 0 15px ${activeMood.hexColor}18, inset 0 0 8px ${activeMood.hexColor}10`
-                  : 'none'
+                  ? `0 0 15px ${activeMood.hexColor}20, inset 0 0 8px ${activeMood.hexColor}10`
+                  : isWhiteBg ? '0 4px 20px rgba(0, 0, 0, 0.06)' : 'none'
               }}
             >
               {settings.showIcons ? (
@@ -615,8 +634,8 @@ export const AodScreen: React.FC<AodScreenProps> = ({
                     color: settings.glowIntensity === 'pulsing'
                       ? activeMood.hexColor
                       : settings.glowIntensity === 'slow'
-                      ? `${activeMood.hexColor}cc`
-                      : 'rgba(255,255,255,0.45)',
+                      ? `${activeMood.hexColor}ee`
+                      : isWhiteBg ? '#1e293b' : 'rgba(255,255,255,0.45)',
                     filter: settings.glowIntensity === 'pulsing'
                       ? `drop-shadow(0 0 12px ${activeMood.hexColor}dd)`
                       : settings.glowIntensity === 'slow'
@@ -765,7 +784,11 @@ export const AodScreen: React.FC<AodScreenProps> = ({
       >
         {/* Custom status text line (e.g. customized DND label) */}
         {settings.showStatusText && settings.customStatusText && (
-          <div className="text-[10px] text-slate-400 capitalize px-4 py-1.5 bg-slate-950/60 rounded-full border border-slate-900 text-center max-w-[280px] truncate rotate-180">
+          <div className={`text-[15px] capitalize px-4 py-1.5 rounded-full border text-center max-w-[280px] truncate rotate-180 transition-colors ${
+            isWhiteBg 
+              ? 'text-slate-800 bg-slate-100/90 border-slate-200/80 shadow-sm' 
+              : 'text-slate-400 bg-slate-950/60 border-slate-900'
+          }`}>
             {settings.customStatusText}
           </div>
         )}
@@ -778,7 +801,11 @@ export const AodScreen: React.FC<AodScreenProps> = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
-                className="bg-slate-950/90 border border-slate-800 px-4 py-2 rounded-xl text-[10px] text-slate-400 font-sans tracking-wide text-center flex items-center gap-2 pointer-events-auto"
+                className={`px-4 py-2 rounded-xl text-[15px] font-sans tracking-wide text-center flex items-center gap-2 pointer-events-auto transition-colors ${
+                  isWhiteBg 
+                    ? 'bg-slate-900/90 border border-slate-800 text-slate-100 shadow-xl' 
+                    : 'bg-slate-950/90 border border-slate-800 text-slate-400'
+                }`}
               >
                 <div className="w-1.5 h-1.5 bg-sky-400 rounded-full animate-ping" />
                 {TRANSLATIONS[language]?.doubleClickExit || TRANSLATIONS.fr.doubleClickExit}
@@ -790,7 +817,11 @@ export const AodScreen: React.FC<AodScreenProps> = ({
             <button
               id="btn-trigger-fullscreen"
               onClick={onExit}
-              className="text-[10px] text-slate-500 hover:text-slate-300 font-sans tracking-wide flex items-center gap-1.5 pointer-events-auto bg-slate-950/80 border border-slate-900 px-3 py-1.5 rounded-full transition-colors cursor-pointer"
+              className={`text-[10px] font-sans tracking-wide flex items-center gap-1.5 pointer-events-auto border px-3 py-1.5 rounded-full transition-colors cursor-pointer ${
+                isWhiteBg
+                  ? 'text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border-slate-300/80 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-300 bg-slate-950/80 border-slate-900'
+              }`}
             >
               {TRANSLATIONS[language]?.exitPreview || TRANSLATIONS.fr.exitPreview}
             </button>
@@ -803,7 +834,11 @@ export const AodScreen: React.FC<AodScreenProps> = ({
         <button
           id="btn-close-fullscreen-immediate"
           onClick={onExit}
-          className="absolute top-4 right-4 text-slate-800 hover:text-slate-450 p-2 hover:bg-slate-950/20 rounded-full transition-colors pointer-events-auto z-20 cursor-pointer"
+          className={`absolute top-4 right-4 p-2 rounded-full transition-colors pointer-events-auto z-20 cursor-pointer ${
+            isWhiteBg
+              ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-200/60'
+              : 'text-slate-800 hover:text-slate-450 hover:bg-slate-950/20'
+          }`}
           title={TRANSLATIONS[language]?.exitAod || "Fermer l'AOD"}
         >
           <X className="w-4 h-4" />

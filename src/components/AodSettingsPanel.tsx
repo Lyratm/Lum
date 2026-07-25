@@ -7,7 +7,8 @@ import {
   Sliders, 
   Type, 
   LayoutTemplate,
-  RefreshCw
+  RefreshCw,
+  Palette
 } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../utils/i18n';
 
@@ -200,6 +201,43 @@ export const AodSettingsPanel: React.FC<AodSettingsPanelProps> = ({
                     {t(`clock_${layout}`)}
                   </button>
                 ))}
+              </div>
+            </div>
+
+            {/* Background Color Selector (Fond Noir vs Fond Blanc) */}
+            <div className="space-y-2 col-span-1 md:col-span-2">
+              <label id="label-bg-color" className="text-xs text-white/65 flex items-center gap-1.5 font-medium">
+                <Palette className="w-3.5 h-3.5 text-[#9B23EA]" />
+                {t('bgColorLabel')}
+              </label>
+              <div className="grid grid-cols-2 gap-2 bg-black/40 p-1.5 rounded-xl border border-white/5">
+                <button
+                  id="btn-bg-black"
+                  onClick={() => updateSetting('bgColor', 'black')}
+                  className={`text-xs py-2 px-3 rounded-lg font-medium transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                    (settings.bgColor || 'black') === 'black'
+                      ? 'bg-slate-900 border border-slate-700 text-white shadow-md'
+                      : 'text-white/40 hover:text-white hover:bg-white/[0.03]'
+                  }`}
+                  type="button"
+                >
+                  <span className="w-3.5 h-3.5 rounded-full bg-black border border-slate-600 inline-block shadow-inner" />
+                  {t('bgBlack')}
+                </button>
+
+                <button
+                  id="btn-bg-white"
+                  onClick={() => updateSetting('bgColor', 'white')}
+                  className={`text-xs py-2 px-3 rounded-lg font-medium transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                    settings.bgColor === 'white'
+                      ? 'bg-white text-slate-900 font-bold shadow-md'
+                      : 'text-white/40 hover:text-white hover:bg-white/[0.03]'
+                  }`}
+                  type="button"
+                >
+                  <span className="w-3.5 h-3.5 rounded-full bg-white border border-slate-300 inline-block shadow-sm" />
+                  {t('bgWhite')}
+                </button>
               </div>
             </div>
           </div>

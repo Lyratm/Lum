@@ -44,6 +44,7 @@ const DEFAULT_SETTINGS: AodSettings = {
   customEmojiBottomLeft: '🌈',
   customEmojiBottomRight: '🔥',
   showCustomTriangleEmojis: true,
+  bgColor: 'black',
 };
 
 export default function App() {
@@ -471,17 +472,6 @@ export default function App() {
                   </AnimatePresence>
                 </div>
               </div>
-
-              {/* Elongated launcher button underneath the logo and language switcher */}
-              <button
-                id="btn-trigger-fullscreen-header"
-                onClick={() => setIsFullscreen(true)}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#9B23EA] to-[#3B82F6] text-white hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] text-xs font-semibold py-2.5 rounded-xl shadow-lg shadow-[#9B23EA]/15 transition-all cursor-pointer"
-                type="button"
-              >
-                <Play className="w-3 h-3 fill-white text-white" />
-                <span>{t('startAod')}</span>
-              </button>
             </div>
           </header>
 
@@ -625,15 +615,6 @@ export default function App() {
 
                   {/* Launch trigger full view container with statistics */}
                   <div className="space-y-3.5">
-                    <button
-                      id="btn-trigger-fullscreen-dashboard"
-                      onClick={() => setIsFullscreen(true)}
-                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#9B23EA] to-[#8A1CDD] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-[#9B23EA]/25 hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer text-sm font-display font-semibold"
-                    >
-                      <Maximize2 className="w-4.5 h-4.5 animate-pulse text-white" />
-                      {t('lauchAodBtn')}
-                    </button>
-
                     {/* Partage en direct button */}
                     <button
                       id="btn-live-share"
@@ -645,15 +626,12 @@ export default function App() {
                       <span>{language === 'fr' ? 'Partage en direct' : 'Live Share'}</span>
                     </button>
 
-
                     {/* SocialSharePanel has been removed at user request */}
                     <p className="text-[11px] text-white/40 text-center leading-relaxed font-light">
                       {t('previewFooter')}
                     </p>
                   </div>
                 </div>
-
-
 
               </div>
 
@@ -662,16 +640,29 @@ export default function App() {
           </main>
 
           {/* Clean footer attribution */}
-          <footer className="mt-16 border-t border-white/5 bg-transparent py-10 text-center text-xs text-white/30">
+          <footer className="mt-16 border-t border-white/5 bg-transparent pt-10 pb-28 text-center text-xs text-white/30">
             <div className="max-w-7xl mx-auto px-4 space-y-4">
               <div className="flex justify-center mb-4">
                 <LogoPrincipalAnimated 
                   className="h-[27px] w-auto filter opacity-40 hover:opacity-100 transition-opacity"
                 />
               </div>
-              <p className="text-[11px] text-white/25 font-mono tracking-wider">V1.5</p>
+              <p className="text-[11px] text-white/25 font-mono tracking-wider">V2.1</p>
             </div>
           </footer>
+
+          {/* Floating launch button fixed at the bottom of the screen */}
+          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-full max-w-xs sm:max-w-sm px-4">
+            <button
+              id="btn-trigger-fullscreen-floating"
+              onClick={() => setIsFullscreen(true)}
+              className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#9B23EA] to-[#3B82F6] text-white font-bold py-3.5 px-6 rounded-full shadow-[0_10px_35px_rgba(155,35,234,0.45)] hover:shadow-[0_15px_45px_rgba(155,35,234,0.65)] hover:scale-[1.03] active:scale-[0.97] transition-all cursor-pointer text-sm font-display border border-white/20 backdrop-blur-xl"
+              type="button"
+            >
+              <Play className="w-4 h-4 fill-white text-white animate-pulse" />
+              <span>{t('startAod')}</span>
+            </button>
+          </div>
         </>
       )}
 
@@ -683,7 +674,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.95 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 bg-slate-950/90 border border-white/10 backdrop-blur-xl px-4.5 py-3 rounded-full shadow-[0_10px_35px_rgba(155,35,234,0.15)] text-white text-xs select-none"
+            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 bg-slate-950/90 border border-white/10 backdrop-blur-xl px-4.5 py-3 rounded-full shadow-[0_10px_35px_rgba(155,35,234,0.15)] text-white text-xs select-none"
           >
             <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-[#9B23EA] to-[#3B82F6] flex items-center justify-center text-[10px]">
               ✨

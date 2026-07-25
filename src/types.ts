@@ -28,4 +28,5 @@ export interface AodSettings {
   customEmojiBottomLeft?: string; // custom emoji at the bottom left
   customEmojiBottomRight?: string; // custom emoji at the bottom right
   showCustomTriangleEmojis?: boolean; // toggles displaying the 3 custom emojis
+  bgColor?: 'black' | 'white';        // background color selection: black (default) or white
 }

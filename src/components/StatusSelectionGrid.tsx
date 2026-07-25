@@ -39,6 +39,7 @@ export const STATUS_CATEGORIES: StatusCategory[] = [
       { id: 'voir-venir', emoji: '🍇', label: 'Voir venir', description: 'Prendre le temps' },
       { id: 'soiree', emoji: '🥂', label: 'Soirée', description: 'Partager une soirée' },
       { id: 'chill', emoji: '🍿', label: 'Chill', description: 'Un moment détendu' },
+      { id: 'pas-disponible', emoji: '❌', label: 'Pas disponible', description: 'Pas pour le moment' },
     ]
   },
   {
@@ -89,10 +90,10 @@ export const STATUS_CATEGORIES: StatusCategory[] = [
     icon: <Sparkles className="w-4 h-4 text-amber-400" />,
     options: [
       { id: 'faire-la-fete', emoji: '🍋', label: 'Faire la fête', description: 'Sortir ce soir' },
-      { id: 'balade-cafe', emoji: '🥝', label: 'Balade & café', description: 'Moment sympa' },
+      { id: 'balade-cafe', emoji: '☕', label: 'Balade & café', description: 'Moment sympa' },
       { id: 'voyage', emoji: '🥭', label: 'Voyage', description: 'Partir ensemble' },
       { id: 'sport', emoji: '🍏', label: 'Sport', description: 'Bouger !' },
-      { id: 'gaming', emoji: '🫐', label: 'Gaming', description: 'Jouer ensemble' },
+      { id: 'gaming', emoji: '🎮', label: 'Gaming', description: 'Jouer ensemble' },
       { id: 'lecture', emoji: '📚', label: 'Lecture', description: 'Partager nos lectures' },
     ]
   },

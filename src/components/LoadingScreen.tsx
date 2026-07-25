@@ -42,14 +42,6 @@ const LoadingScreen: React.FC = () => {
         </div>
 
         <div className="flex flex-col items-center gap-2">
-          <motion.h1 
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-2xl font-bold font-display tracking-[0.2em] text-white/90 uppercase"
-          >
-            Lum
-          </motion.h1>
           <motion.div 
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
